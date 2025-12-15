@@ -375,6 +375,42 @@ html {
     .logo-imagen {
         height: 40px;
     }
+
+    #lista-marcas-populares {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary-color) #f0f0f0;
+    }
+
+    #lista-marcas-populares::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    #lista-marcas-populares::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-radius: 10px;
+    }
+
+    #lista-marcas-populares::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 10px;
+    }
+
+    #lista-marcas-populares .brand-card {
+        flex-shrink: 0;
+        width: 180px;
+        height: 180px;
+        min-height: 180px;
+    }
+
+    #lista-marcas-populares .brand-logo {
+        max-width: 120px;
+    }
 }
 
 @media (max-width: 420px) {
@@ -449,6 +485,10 @@ html {
     transform: translateY(-5px);
 }
 
+.card:not(.brand-card):hover {
+    box-shadow: 0 8px 20px rgba(185, 13, 226, 0.15);
+}
+
 .card-icon {
     font-size: 2rem;
     color: var(--primary-color);
@@ -458,6 +498,56 @@ html {
 .card h3 {
     margin-bottom: 0.5rem;
     color: #444;
+    border-radius: 50%;
+}
+
+.brand-card {
+    display: flex;
+    border-radius: 50%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    min-height: 220px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+    transition: all 0.4s ease;
+    height: 220px;
+    width: 220px;
+}
+
+.brand-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(185, 208, 226, 0.4);
+    background: linear-gradient(135deg, #B9D0E2 0%, #A0C4DD 100%);
+}
+
+.brand-card:hover h3 {
+    color: white;
+}
+
+.brand-logo {
+    width: 130%;
+    max-width: 90px;
+    min-width: 80px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s ease;
+    filter: brightness(1);
+}
+
+.brand-card:hover .brand-logo {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+}
+
+.brand-card h3 {
+    font-size: clamp(0.85rem, 1.8vw, 1rem);
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: center;
+    line-height: 1.2;
+    transition: color 0.3s ease;
 }
 
 #lista-pasos-de-tu-rutina {
