@@ -116,6 +116,11 @@ function initNavigation() {
     document.getElementById('tipo-de-piel').addEventListener('click', () => scrollToSection('tipo-de-piel-q'));
     document.getElementById('skincare').addEventListener('click', () => scrollToSection('pasos-de-tu-rutina'));
     document.getElementById('inicio').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    
+    const logo = document.querySelector('.logo-imagen');
+    if (logo) {
+        logo.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
 }
 
 
