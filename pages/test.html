@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Piel | Capturando Momentos</title>
+    <script src="https://kit.fontawesome.com/26a9d020c4.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #B90DE2;
+            --secondary-color: #F6E7EA;
+            --accent-color: #DE6284;
+            --text-dark: #393F63;
+            --bg-color: #F6E7EA;
+            --white: #ffffff;
+            --success: #EFB32F;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        #header-container {
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; color: var(--primary-color); }
+        
+        .btn-back {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        .btn-back:hover { color: var(--primary-color); }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-header { text-align: center; margin-bottom: 2rem; }
+        .quiz-header h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .quiz-header p { color: #666; }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .question-block:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .question-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .question-number {
+            background-color: var(--secondary-color);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: block;
+            padding: 12px 15px;
+            background-color: #fafafa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+
+        .option-label:hover { background-color: var(--secondary-color); }
+
+        .option-label input[type="radio"] {
+            margin-right: 10px;
+            accent-color: var(--primary-color);
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 2rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #9a0bbf;
+            transform: scale(1.02);
+        }
+
+        #resultado-container {
+            display: none;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 2px dashed var(--accent-color);
+            margin-top: 2rem;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .result-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .result-desc { margin-bottom: 1.5rem; font-size: 1.1rem; }
+
+        .recommendation-box {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .recommendation-box h4 { margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (min-width: 600px) {
+            .options-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header-container">
+        <div class="logo">Capturando Momentos</div>
+        <a href="../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+    </header>
+
+    <main class="quiz-container">
+        <div class="quiz-header">
+            <h1>Diagnóstico de Piel</h1>
+            <p>Responde estas 4 preguntas sencillas para que nuestro algoritmo determine tu rutina ideal.</p>
+        </div>
+
+        <form id="skin-quiz-form" onsubmit="calcularResultado(event)">
+            
+            <!-- PREGUNTA 1 -->
+            <div class="question-block">
+                <div class="question-title"><span class="question-number">1</span> ¿Cómo sientes tu piel después de lavarla?</div>
+                <div class="options-grid">
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="seca" required> 
+                        Tirante y áspera
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="grasa"> 
+                        Limpia pero empieza a brillar pronto
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="mixta"> 
+                        Grasa en la frente/nariz, seca en mejillas
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="sensible"> 
+                        Roja, con picazón o irritada
+                    </label>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 2 -->
+            <div class="question-block">
+                <div class="question-title"><span class="question-number">2</span> ¿Cómo se ven tus poros?</div>
+                <div class="options-grid">
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="seca" required> 
+                        Casi invisibles
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="grasa"> 
+                        Visibles y agrandados en toda la cara
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="mixta"> 
+                        Visibles solo en la nariz y frente
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="sensible"> 
+                        Normales, pero la piel se ve enrojecida
+                    </label>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 3 -->
+            <div class="question-block">
+                <div class="question-title"><span class="question-number">3</span> Al medio día, ¿cómo luce tu maquillaje o piel?</div>
+                <div class="options-grid">
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="seca" required> 
+                        Se ve cuarteado o con parches secos
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="grasa"> 
+                        Brillante, necesito polvo matificante
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="mixta"> 
+                        Brillante en zona T, normal en el resto
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="sensible"> 
+                        No uso mucho maquillaje por miedo a reacciones
+                    </label>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 4 -->
+            <div class="question-block" style="border: 2px solid var(--success); background: linear-gradient(135deg, #f0fff0 0%, var(--secondary-color) 100%);">
+                <div class="question-title"><span class="question-number">4</span> ¿Su piel es verde? 🐸</div>
+                <div class="options-grid">
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="falso" required> 
+                        Falso
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="verdadero"> 
+                        Verdadero
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Analizar mis Resultados <i class="fas fa-microscope"></i></button>
+        </form>
+
+        <!-- RESULTADOS (Se llenan con JS) -->
+        <div id="resultado-container">
+            <div class="result-icon" style="font-size: 3rem; margin-bottom:10px; color:var(--primary-color);">
+                <i class="fas fa-magic"></i>
+            </div>
+            <h2 class="result-title" id="tipo-piel-titulo">Tu tipo de piel</h2>
+            <p class="result-desc" id="tipo-piel-desc">Descripción...</p>
+            
+            <div class="recommendation-box">
+                <h4><i class="fas fa-star"></i> Tip Científico:</h4>
+                <p id="tipo-piel-tip">Consejo...</p>
+            </div>
+            
+            <button onclick="location.reload()" style="margin-top:20px; padding:10px 20px; background:none; border:1px solid #ccc; border-radius:20px; cursor:pointer;">Hacer test de nuevo</button>
+        </div>
+
+    </main>
+
+    <script>
+        function calcularResultado(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            
+            const esPielVerde = form.q4.value === 'verdadero';
+            
+            let ganador;
+            
+            if (esPielVerde) {
+                ganador = 'shrek';
+            } else {
+                const respuestas = [
+                    form.q1.value,
+                    form.q2.value,
+                    form.q3.value
+                ];
+
+                const conteo = { seca: 0, grasa: 0, mixta: 0, sensible: 0 };
+
+                respuestas.forEach(respuesta => {
+                    if(conteo.hasOwnProperty(respuesta)) {
+                        conteo[respuesta]++;
+                    }
+                });
+
+                ganador = Object.keys(conteo).reduce((a, b) => conteo[a] > conteo[b] ? a : b);
+            }
+
+            const infoResultados = {
+                'seca': {
+                    titulo: "Piel Seca 🌵",
+                    desc: "Tu piel necesita hidratación extra ya que produce menos sebo de lo normal. Tiende a sentirse tirante.",
+                    tip: "Busca ingredientes como Ácido Hialurónico y Ceramidas. ¡Evita limpiadores muy agresivos!"
+                },
+                'grasa': {
+                    titulo: "Piel Grasa ✨",
+                    desc: "Tu piel produce exceso de sebo, lo que puede causar brillo y poros obstruidos.",
+                    tip: "Usa limpiadores con Ácido Salicílico y cremas en gel (oil-free). ¡No dejes de hidratar!"
+                },
+                'mixta': {
+                    titulo: "Piel Mixta ⚖️",
+                    desc: "La combinación más común: grasa en la zona T (frente, nariz) y seca/normal en mejillas.",
+                    tip: "La Niacinamida es tu mejor amiga: regula la grasa y calma las zonas secas."
+                },
+                'sensible': {
+                    titulo: "Piel Sensible 🌸",
+                    desc: "Tu barrera cutánea es delicada y reacciona fácilmente a factores externos.",
+                    tip: "Menos es más. Busca productos sin fragancia y con ingredientes calmantes como Centella Asiática."
+                },
+                'shrek': {
+                    titulo: "Chuerc 🧅",
+                    desc: "Eres un ogro que vive en el pantano. te gusta inflar sapos y bañarte en lodo.",
+                    tip: "Capas, las cebollas tienen capas, los ogros tenemos capas."
+                }
+            };
+
+            const data = infoResultados[ganador];
+            
+            document.getElementById('tipo-piel-titulo').innerText = data.titulo;
+            document.getElementById('tipo-piel-desc').innerText = data.desc;
+            document.getElementById('tipo-piel-tip').innerText = data.tip;
+
+            document.getElementById('skin-quiz-form').style.display = 'none';
+            document.getElementById('resultado-container').style.display = 'block';
+            
+            document.getElementById('resultado-container').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

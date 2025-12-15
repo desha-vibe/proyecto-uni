@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tienda | Capturando Momentos</title>
+        <script src="https://kit.fontawesome.com/26a9d020c4.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles/tienda-styles.css">
+        <script src="scripts/tienda-logic.js" defer></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <a href="../index.html" class="btn-volver">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </a>
+
+            <h1>Nuestros Productos <i class="fas fa-shopping-bag"></i></h1>
+
+            <div class="filter-buttons">
+                <button onclick="filtrarYMostrar(LIMPIAR)">
+                    <i class="fas fa-soap"></i> Limpiar
+                </button>
+                <button onclick="filtrarYMostrar(HIDRATAR)">
+                    <i class="fas fa-tint"></i> Hidratar
+                </button>
+                <button onclick="filtrarYMostrar(PROTEGER)">
+                    <i class="fas fa-sun"></i> Proteger
+                </button>
+                <button onclick="filtrarYMostrar(TONIFICAR)">
+                    <i class="fas fa-spray-can"></i> Tonificar
+                </button>
+            </div>
+
+            <div id="productos-container">
+            </div>
+
+            <div id="carrito">
+                <h2>
+                    <i class="fas fa-shopping-cart"></i> 
+                    Carrito 
+                    <span class="badge-carrito" id="carrito-cantidad">0</span>
+                </h2>
+                <div id="carrito-items">
+                </div>
+                <div class="carrito-total" id="carrito-total">
+                    <span class="carrito-total-label">Total:</span>
+                    <span class="carrito-total-monto">$0.00</span>
+                </div>
+                <button class="btn-comprar" onclick="finalizarCompra()">
+                    <i class="fas fa-credit-card"></i> Finalizar Compra
+                </button>
+                <button class="btn-vaciar-carrito" onclick="vaciarCarrito()">
+                    <i class="fas fa-trash-alt"></i> Vaciar Carrito
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

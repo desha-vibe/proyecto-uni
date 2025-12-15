@@ -1,0 +1,44 @@
+.menu{
+    display: flex;
+}
+
+.info-box{
+    margin: 0px auto;
+    padding: 50px 0 50px 0;
+    color: black;
+    text-align: center;
+    border-top: 2px solid black;     
+    border-bottom: 2px solid black;  
+    border-left: none;               
+    border-right: none;
+}
+
+
+#menu{
+    justify-content: center;
+    display: flex;
+}
+
+
+#menu p{
+    padding: 30px;
+    margin: 0 auto;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+
+.fa-newspaper, .fa-bars, .fa-book-open{
+    font-size: 260%;
+    display: block;
+    color: rgb(0, 0, 0);
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 600px) {
+  .cuadro {
+    width: 90%;
+    font-size: 16px;
+    padding: 10px;
+  }
+}

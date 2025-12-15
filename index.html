@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Integrador | Capturando Momentos</title>
+    <script src="https://kit.fontawesome.com/26a9d020c4.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+
+</head>
+
+<body>
+    <div id="header-container">
+        <button id="inicio"><i class="fas fa-home"></i> Inicio</button>
+        <a href="pages/tienda.html"><button id="ofertas"><i class="fas fa-tag"></i> Ofertas</button></a>
+        <button id="marcas"><i class="fas fa-star"></i> Marcas</button>
+        <button id="tipo-de-piel"><i class="fas fa-user-check"></i> Tipo de Piel</button>
+        <button id="skincare"><i class="fas fa-leaf"></i> Skincare</button>
+        <a href="pages/ubicacion.html"><button id="ubicacion"><i class="fas fa-map-marker-alt"></i> Dónde estamos.</button></a>
+    </div>
+
+    <main id="content-container">
+        
+        <div class="hero-carousel-container">
+            <div class="hero-section active">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span>NUEVOS</span>
+                        <span>PRODUCTOS</span>
+                    </h1>
+                    <p>Descubre el secreto de la belleza coreana: cuidado de la piel inspirado en la tradición, respaldado por la innovación.</p>
+                    <button class="cta-button" onclick="scrollToSection('colecciones')">Explorar Colección</button>
+                </div>
+                <div class="hero-image">
+                    <img src="static/img/productos.png" alt="Nuevos Productos de Skincare Coreano">
+                </div>
+            </div>
+
+            <div class="hero-section" style="background-color: #E8B4D0;">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span>OFERTAS</span>
+                        <span>ESPECIALES</span>
+                    </h1>
+                    <p>Hasta 40% de descuento en productos seleccionados. ¡Tu piel merece lo mejor!</p>
+                    <button class="cta-button" onclick="window.location.href='pages/tienda.html'">Ver Ofertas</button>
+                </div>
+                <div class="hero-image">
+                    <img src="static/img/productos.png" alt="Ofertas Especiales de Skincare">
+                </div>
+            </div>
+
+            <div class="hero-section" style="background-color: #D4A5C9;">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span>RUTINA</span>
+                        <span>PERFECTA</span>
+                    </h1>
+                    <p>Descubre los pasos esenciales para una piel radiante y saludable todos los días.</p>
+                    <button class="cta-button" onclick="scrollToSection('pasos-de-tu-rutina')">Conocer Más</button>
+                </div>
+                <div class="hero-image">
+                    <img src="static/img/productos.png" alt="Rutina de Skincare">
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prev-slide" aria-label="Slide anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn" id="next-slide" aria-label="Slide siguiente">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="carousel-indicators" id="carousel-indicators"></div>
+        </div>
+
+        <div id="colecciones">
+            <div class="section-title">Nuestras Colecciones</div>
+            <div id="lista-colecciones" class="grid-container">
+                <!-- Tarjeta 1 -->
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-sun"></i></div>
+                    <h3>Verano Radiante</h3>
+                    <p>Protección y brillo para días soleados.</p>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-moon"></i></div>
+                    <h3>Rutina Nocturna</h3>
+                    <p>Reparación profunda mientras duermes.</p>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-tint"></i></div>
+                    <h3>Hidratación Pura</h3>
+                    <p>Ácido hialurónico y frescura.</p>
+                </div>
+                <!-- Tarjeta 4 -->
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Favoritos</h3>
+                    <p>Los más vendidos del mes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tipo-de-piel-q">
+            <div class="section-title">¿Cuál es tu tipo de piel?</div>
+            <p>Conocer tu piel es el primer paso científico para cuidarla.</p>
+            
+            <div class="skin-types-grid" id="lista-tipo-de-piel">
+                <a href="pages/test.html"><button class="cta-button" id="btn-test" onclick="">Hacer Test <i class="fas fa-magic"></i></button></a>
+                <span class="skin-tag">Piel Seca</span>
+                <span class="skin-tag">Piel Grasa</span>
+                <span class="skin-tag">Piel Mixta</span>
+                <span class="skin-tag">Piel Sensible</span>
+            </div>
+            <p id="resultado-test" style="margin-top: 15px; font-weight: bold; color: var(--primary-color);"></p>
+        </div>
+
+        <div id="pasos-de-tu-rutina">
+            <div class="section-title">Pasos de tu Rutina</div>
+            <div id="lista-pasos-de-tu-rutina">
+                <div class="step-circle" onclick="irATiendaConFiltro('limpiar')">
+                    <i class="fas fa-soap fa-2x"></i>
+                    <p style="margin-top:10px;">Limpiar</p>
+                </div>
+                <div class="step-circle" onclick="irATiendaConFiltro('tonificar')">
+                    <i class="fas fa-spray-can fa-2x"></i>
+                    <p style="margin-top:10px;">Tonificar</p>
+                </div>
+                <div class="step-circle" onclick="irATiendaConFiltro('hidratar')">
+                    <i class="fas fa-tint fa-2x"></i>
+                    <p style="margin-top:10px;">Hidratar</p>
+                </div>
+                <div class="step-circle" onclick="irATiendaConFiltro('proteger')">
+                    <i class="fas fa-sun fa-2x"></i>
+                    <p style="margin-top:10px;">Proteger</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="marcas-populares">
+            <div class="section-title">Marcas Populares</div>
+            <div id="lista-marcas-populares" class="grid-container">
+                <div class="card"><h3>La Roche-Posay</h3></div>
+                <div class="card"><h3>CeraVe</h3></div>
+                <div class="card"><h3>The Ordinary</h3></div>
+                <div class="card"><h3>Neutrogena</h3></div>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="footer-container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>Sobre Nosotros</h4>
+                <p>Capturando Momentos es tu tienda de confianza para el cuidado de la piel basado en ciencia.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Enlaces Rápidos</h4>
+                <a href="#inicio">Inicio</a>
+                <a href="#ofertas">Ofertas</a>
+                <a href="#blog">Blog</a>
+            </div>
+            <div class="footer-column">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-envelope"></i> hola@skincare.com</p>
+                <p><i class="fas fa-phone"></i> +52 555 123 4567</p>
+            </div>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.7;">&copy; 2024 Proyecto Integrador. Todos los derechos reservados.</p>
+    </div>
+
+    <script src="scripts/scripts.js"></script>
+</body>
+</html>
